@@ -1,17 +1,13 @@
 ---
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 
 const { title, step, total, backHref, nextHref } = Astro.props;
 
 const path = Astro.url.pathname;
 
-const navLinkClass = (href) => {
-  const active = path === href;
-  return [
-    "hover:text-neutral-200",
-    active ? "text-neutral-100" : "text-neutral-400",
-  ].join(" ");
-};
+const navLinkClass = () =>
+  "text-neutral-400 hover:text-neutral-200 transition-colors";
 
 const navLinkAttrs = (href) => (path === href ? { "aria-current": "page" } : {});
 
@@ -31,17 +27,19 @@ const navLinkAttrs = (href) => (path === href ? { "aria-current": "page" } : {})
     data-next={nextHref ?? ""}
   >
     <!-- App-like transitions -->
+    <ClientRouter />
 
     <!-- Top mini-nav (centered like the content) -->
 <header class="fixed left-0 right-0 top-0 z-50">
   <div class="bg-neutral-950/60 backdrop-blur-md border-b border-neutral-800/60">
     <div class="mx-auto w-full max-w-3xl px-4 py-3">
       <nav class="flex justify-center gap-6 text-sm">
-        <a class={navLinkClass("/")} href="/" {...navLinkAttrs("/")}>Home</a>
-        <a class={navLinkClass("/about")} href="/about" {...navLinkAttrs("/about")}>About</a>
-        <a class={navLinkClass("/work")} href="/work" {...navLinkAttrs("/work")}>Work</a>
-        <a class={navLinkClass("/skills")} href="/skills" {...navLinkAttrs("/skills")}>Skills</a>
-        <a class={navLinkClass("/contact")} href="/contact" {...navLinkAttrs("/contact")}>Contact</a>
+<a data-nav href="/" class={navLinkClass("/")}>Home</a>
+<a data-nav href="/about" class={navLinkClass("/about")}>About</a>
+<a data-nav href="/work" class={navLinkClass("/work")}>Work</a>
+<a data-nav href="/skills" class={navLinkClass("/skills")}>Skills</a>
+<a data-nav href="/contact" class={navLinkClass("/contact")}>Contact</a>
+
       </nav>
     </div>
   </div>
@@ -150,6 +148,49 @@ const navLinkAttrs = (href) => (path === href ? { "aria-current": "page" } : {})
     }
   });
 </script>
+
+<script is:inline>
+  function normalizePath(p) {
+    // Remove query/hash + trailing slash (except root)
+    p = (p || "").split("?")[0].split("#")[0];
+    if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+    return p || "/";
+  }
+
+  function stripBase(pathname) {
+    // If deployed under a subpath (e.g., /repo), remove it.
+    const base = normalizePath(import.meta.env.BASE_URL || "/");
+    const path = normalizePath(pathname);
+
+    if (base !== "/" && path.startsWith(base)) {
+      const stripped = path.slice(base.length);
+      return normalizePath(stripped);
+    }
+    return path;
+  }
+
+  function updateActiveNav() {
+    const current = stripBase(window.location.pathname);
+    const links = document.querySelectorAll("a[data-nav]");
+
+    links.forEach((a) => {
+      const href = a.getAttribute("href") || "/";
+      const target = normalizePath(href);
+
+      const isActive = current === target;
+      a.classList.toggle("text-neutral-100", isActive);
+      a.classList.toggle("text-neutral-400", !isActive);
+
+      if (isActive) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+  }
+
+  // Initial + Astro client-side swaps
+  document.addEventListener("DOMContentLoaded", updateActiveNav);
+  document.addEventListener("astro:after-swap", updateActiveNav);
+</script>
+
 
   </body>
 </html>
