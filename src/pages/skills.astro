@@ -1,0 +1,64 @@
+---
+import FlowLayout from "../layouts/FlowLayout.astro";
+---
+
+<FlowLayout
+  title="Skills – Ahmad Madi"
+  step={4}
+  total={5}
+  backHref="/work"
+  nextHref="/contact"
+>
+  <section class="space-y-6">
+    <header class="space-y-2">
+      <h1 class="text-3xl font-semibold tracking-tight">Skills</h1>
+      <p class="text-neutral-300">
+        Tools and technologies I use to build and operate production systems.
+      </p>
+    </header>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="rounded-xl border border-neutral-800 p-4">
+        <h2 class="mb-3 text-sm font-semibold text-neutral-200">Backend</h2>
+        <p class="text-sm text-neutral-300">
+          Node.js, TypeScript, Python, REST APIs, microservices, SQL and NoSQL
+          databases.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-neutral-800 p-4">
+        <h2 class="mb-3 text-sm font-semibold text-neutral-200">
+          Cloud & Reliability
+        </h2>
+        <p class="text-sm text-neutral-300">
+          AWS (Lambda, ECS, S3, Redshift, SQS, SNS), cloud automation, observability,
+          and operational safety.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-neutral-800 p-4">
+        <h2 class="mb-3 text-sm font-semibold text-neutral-200">Frontend</h2>
+        <p class="text-sm text-neutral-300">
+          React, TypeScript, modern UI migrations, performance optimization.
+        </p>
+      </div>
+
+      <div class="rounded-xl border border-neutral-800 p-4">
+        <h2 class="mb-3 text-sm font-semibold text-neutral-200">
+          Quality & Delivery
+        </h2>
+        <p class="text-sm text-neutral-300">
+          CI/CD, testing, code reviews, documentation, agile collaboration.
+        </p>
+      </div>
+    </div>
+
+    <div class="rounded-xl border border-neutral-800 p-4">
+      <h2 class="mb-2 text-sm font-semibold text-neutral-200">Principles</h2>
+      <p class="text-sm text-neutral-300">
+        I optimize for reliability, clarity, and performance — shipping pragmatic
+        solutions first, then improving iteratively.
+      </p>
+    </div>
+  </section>
+</FlowLayout>

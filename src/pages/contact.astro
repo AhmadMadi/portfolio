@@ -1,0 +1,75 @@
+---
+import FlowLayout from "../layouts/FlowLayout.astro";
+---
+
+<FlowLayout
+  title="Contact – Ahmad Madi"
+  step={5}
+  total={5}
+  backHref="/skills"
+  nextHref="/"
+>
+  <section class="space-y-6">
+    <header class="space-y-2">
+      <h1 class="text-3xl font-semibold tracking-tight">Contact</h1>
+      <p class="text-neutral-300">
+        I’m open to remote roles and relocation.  
+        The fastest way to reach me is email or LinkedIn.
+      </p>
+    </header>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="rounded-xl border border-neutral-800 p-4 space-y-3">
+        <a
+          href="mailto:ahmadsamimadi@gmail.com"
+          class="block rounded-lg border border-neutral-800 px-3 py-2 text-sm hover:bg-neutral-900"
+        >
+          Email
+          <div class="text-xs text-neutral-500">
+            ahmadsamimadi@gmail.com
+          </div>
+        </a>
+
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noreferrer"
+          class="block rounded-lg border border-neutral-800 px-3 py-2 text-sm hover:bg-neutral-900"
+        >
+          LinkedIn
+        </a>
+
+        <a
+          href="https://github.com"
+          target="_blank"
+          rel="noreferrer"
+          class="block rounded-lg border border-neutral-800 px-3 py-2 text-sm hover:bg-neutral-900"
+        >
+          GitHub
+        </a>
+      </div>
+
+      <div class="rounded-xl border border-neutral-800 p-4">
+        <h2 class="mb-2 text-sm font-semibold text-neutral-200">
+          Resume
+        </h2>
+        <p class="text-sm text-neutral-300">
+          Prefer a PDF version?
+        </p>
+
+        <a
+          href="/resume.pdf"
+          class="mt-4 inline-flex items-center justify-center rounded-md bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-200"
+        >
+          Download Resume
+        </a>
+      </div>
+    </div>
+
+    <div class="rounded-xl border border-neutral-800 p-4">
+      <p class="text-sm text-neutral-300">
+        Beirut, Lebanon · Open to remote and international opportunities
+      </p>
+    </div>
+  </section>
+</FlowLayout>

@@ -1,0 +1,72 @@
+---
+import FlowLayout from "../layouts/FlowLayout.astro";
+---
+
+<FlowLayout
+  title="About – Ahmad Madi"
+  step={2}
+  total={5}
+  backHref="/"
+  nextHref="/work"
+>
+  <section class="space-y-6">
+    <header class="space-y-2">
+      <h1 class="text-3xl font-semibold tracking-tight">About me</h1>
+      <p class="text-neutral-300">
+        Senior Software Engineer with strong experience building and operating
+        cloud-based systems in production environments.
+      </p>
+    </header>
+
+    <div class="rounded-xl border border-neutral-800 p-4 space-y-3">
+      <p class="text-sm text-neutral-300">
+        I have over five years of experience working on internal platforms,
+        backend services, and operational tooling where reliability and
+        performance are critical.
+      </p>
+
+      <p class="text-sm text-neutral-300">
+        My work focuses on designing scalable backend systems, automating
+        workflows using cloud-native architectures, and modernizing legacy
+        systems without disrupting production.
+      </p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <div class="rounded-xl border border-neutral-800 p-4">
+        <h2 class="mb-2 text-sm font-semibold text-neutral-200">
+          What I do best
+        </h2>
+        <ul class="space-y-1 text-sm text-neutral-300">
+          <li>• Designing scalable backend APIs and services</li>
+          <li>• Cloud automation using AWS and event-driven systems</li>
+          <li>• Improving production performance and stability</li>
+          <li>• Migrating legacy systems to modern stacks</li>
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-neutral-800 p-4">
+        <h2 class="mb-2 text-sm font-semibold text-neutral-200">
+          How I work
+        </h2>
+        <ul class="space-y-1 text-sm text-neutral-300">
+          <li>• Pragmatic and impact-driven</li>
+          <li>• Strong ownership from design to rollout</li>
+          <li>• Clear communication of tradeoffs</li>
+          <li>• Focused on shipping and iterating safely</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rounded-xl border border-neutral-800 p-4">
+      <h2 class="mb-2 text-sm font-semibold text-neutral-200">
+        Currently
+      </h2>
+      <p class="text-sm text-neutral-300">
+        Working remotely at Washmen on internal platforms, operational analytics,
+        and cloud automation systems. Also building independent projects such as
+        MenuCraft.
+      </p>
+    </div>
+  </section>
+</FlowLayout>

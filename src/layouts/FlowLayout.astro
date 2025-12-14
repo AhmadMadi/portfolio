@@ -1,0 +1,157 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+
+const { title, step, total, backHref, nextHref } = Astro.props;
+
+const path = Astro.url.pathname;
+
+const navLinkClass = (href) => {
+  const active = path === href;
+  return [
+    "hover:text-neutral-200",
+    active ? "text-neutral-100" : "text-neutral-400",
+  ].join(" ");
+};
+
+const navLinkAttrs = (href) => (path === href ? { "aria-current": "page" } : {});
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body
+    class="min-h-screen bg-neutral-950 text-neutral-100 overflow-y-auto md:overflow-hidden"
+    data-back={backHref ?? ""}
+    data-next={nextHref ?? ""}
+  >
+    <!-- App-like transitions -->
+    <ClientRouter />
+
+    <!-- Top mini-nav (centered like the content) -->
+<header class="fixed left-0 right-0 top-0 z-50">
+  <div class="bg-neutral-950/60 backdrop-blur-md border-b border-neutral-800/60">
+    <div class="mx-auto w-full max-w-3xl px-4 py-3">
+      <nav class="flex justify-center gap-6 text-sm">
+        <a class={navLinkClass("/")} href="/" {...navLinkAttrs("/")}>Home</a>
+        <a class={navLinkClass("/about")} href="/about" {...navLinkAttrs("/about")}>About</a>
+        <a class={navLinkClass("/work")} href="/work" {...navLinkAttrs("/work")}>Work</a>
+        <a class={navLinkClass("/skills")} href="/skills" {...navLinkAttrs("/skills")}>Skills</a>
+        <a class={navLinkClass("/contact")} href="/contact" {...navLinkAttrs("/contact")}>Contact</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+    <!-- Main content -->
+    <main class="flex min-h-screen items-center justify-center px-4 pt-24">
+      <div class="w-full max-w-3xl pb-24">
+        <slot />
+      </div>
+    </main>
+
+    <!-- Footer nav (centered like the content) -->
+<footer class="fixed bottom-0 left-0 right-0 z-50">
+  <div class="bg-neutral-950/60 backdrop-blur-md border-t border-neutral-800/60">
+<div class="mx-auto w-full max-w-3xl px-4 py-3 text-sm text-neutral-400">
+  <!-- Mobile: single-row 3-column layout -->
+  <!-- Desktop: classic left/right layout -->
+  <div class="grid grid-cols-3 items-center md:flex md:justify-between">
+    
+    <!-- Left: Back -->
+    <div class="justify-self-start md:hidden">
+      {backHref && (
+        <a
+          href={backHref}
+          class="rounded-md border border-neutral-700 px-3 py-1 text-sm hover:bg-neutral-800"
+        >
+          ← Back
+        </a>
+      )}
+    </div>
+
+    <!-- Center: Counter -->
+    <div class="justify-self-center tabular-nums md:hidden">
+      {step}/{total}
+    </div>
+
+    <!-- Right: Next -->
+    <div class="justify-self-end md:hidden">
+      {nextHref && (
+        <a
+          href={nextHref}
+          class="rounded-md bg-neutral-100 px-3 py-1 text-sm text-neutral-900 hover:bg-neutral-200"
+        >
+          Next →
+        </a>
+      )}
+    </div>
+
+    <!-- Desktop (md+): keep original behavior -->
+    <div class="hidden md:flex md:w-full md:items-center md:justify-between">
+      <div class="tabular-nums">{step}/{total}</div>
+
+      <div class="flex gap-3">
+        {backHref && (
+          <a
+            href={backHref}
+            class="rounded-md border border-neutral-700 px-3 py-1 text-sm hover:bg-neutral-800"
+          >
+            ← Back
+          </a>
+        )}
+
+        {nextHref && (
+          <a
+            href={nextHref}
+            class="rounded-md bg-neutral-100 px-3 py-1 text-sm text-neutral-900 hover:bg-neutral-200"
+          >
+            Next →
+          </a>
+        )}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  </div>
+</footer>
+
+
+
+    <!-- Keyboard navigation: ← back, → next -->
+<script is:inline>
+  document.addEventListener("keydown", (e) => {
+    const back = document.body.dataset.back;
+    const next = document.body.dataset.next;
+
+    const t = e.target;
+    const isTyping =
+      t &&
+      (t.tagName === "INPUT" ||
+        t.tagName === "TEXTAREA" ||
+        t.isContentEditable);
+
+    if (isTyping) return;
+
+    if (e.key === "ArrowLeft" && back) {
+      window.location.href = back;
+    }
+
+    if (e.key === "ArrowRight" && next) {
+      window.location.href = next;
+    }
+  });
+</script>
+
+  </body>
+</html>

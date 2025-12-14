@@ -1,16 +1,71 @@
 ---
-
+import FlowLayout from "../layouts/FlowLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<FlowLayout
+  title="Ahmad Madi – Senior Software Engineer"
+  step={1}
+  total={5}
+  nextHref="/about"
+>
+  <section class="space-y-8">
+    <header class="space-y-3">
+      <p class="text-sm text-neutral-400">Ahmad Madi</p>
+
+      <h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
+        Senior Software Engineer
+      </h1>
+
+      <p class="max-w-2xl text-neutral-300">
+        I design, build, and operate reliable backend systems, cloud automation,
+        and internal platforms used in production every day.
+      </p>
+
+      <p class="max-w-2xl text-neutral-400">
+        Specialized in AWS-based systems, real-time analytics, and modernizing
+        legacy platforms with a strong focus on performance and reliability.
+      </p>
+    </header>
+
+    <div class="flex flex-col gap-3 sm:flex-row">
+      <a
+        href="/resume.pdf"
+        class="inline-flex items-center justify-center rounded-md bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-200"
+      >
+        Download Resume
+      </a>
+
+      <a
+        href="/about"
+        class="inline-flex items-center justify-center rounded-md border border-neutral-700 px-4 py-2 text-sm text-neutral-100 hover:bg-neutral-900"
+      >
+        Get to know me →
+      </a>
+    </div>
+
+    <div class="rounded-xl border border-neutral-800 p-4">
+      <div class="grid gap-3 md:grid-cols-3">
+        <div>
+          <div class="text-xs text-neutral-500">Focus</div>
+          <div class="text-sm text-neutral-200">
+            Backend · Cloud Automation · Reliability
+          </div>
+        </div>
+
+        <div>
+          <div class="text-xs text-neutral-500">Core Stack</div>
+          <div class="text-sm text-neutral-200">
+            AWS · Node.js · TypeScript · Python
+          </div>
+        </div>
+
+        <div>
+          <div class="text-xs text-neutral-500">Currently</div>
+          <div class="text-sm text-neutral-200">
+            SSWE at Washmen (Remote)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</FlowLayout>

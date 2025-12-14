@@ -1,0 +1,56 @@
+---
+import FlowLayout from "../layouts/FlowLayout.astro";
+---
+
+<FlowLayout
+  title="Work – Ahmad Madi"
+  step={3}
+  total={5}
+  backHref="/about"
+  nextHref="/skills"
+>
+  <section class="space-y-6">
+    <header class="space-y-2">
+      <h1 class="text-3xl font-semibold tracking-tight">Selected work</h1>
+      <p class="text-neutral-300">
+        A couple of projects I’m proud of — one from my role at Washmen, and one product I built.
+      </p>
+    </header>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      <!-- Washmen project -->
+      <article class="rounded-xl border border-neutral-800 p-4">
+        <div class="text-xs text-neutral-500">Washmen</div>
+        <h2 class="mt-1 text-lg font-medium">Ops Dashboard</h2>
+        <p class="mt-1 text-sm text-neutral-300">
+          Modernized operational tooling into a scalable, API-driven system, improving maintainability
+          and day-to-day usability while keeping production stable during migration.
+        </p>
+        <p class="mt-2 text-xs text-neutral-400">
+          React · TypeScript · Backend APIs · AWS
+        </p>
+      </article>
+
+      <!-- MenuDash project (external link + orange hover) -->
+      <a
+        href="https://menudash.io"
+        target="_blank"
+        rel="noreferrer"
+        class="group block rounded-xl border border-neutral-800 p-4 transition
+               hover:border-orange-500/50 hover:bg-orange-500/10"
+      >
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-medium">MenuDash</h2>
+          <span class="text-xs text-neutral-500 group-hover:text-orange-300">Open ↗</span>
+        </div>
+        <p class="mt-1 text-sm text-neutral-300 group-hover:text-neutral-200">
+          A streamlined digital menu management platform that helps businesses create, edit,
+          and present menus online with a clean dashboard experience.
+        </p>
+        <p class="mt-2 text-xs text-neutral-400 group-hover:text-orange-200/80">
+          SaaS · Dashboard UI · Menu items · Images · Pricing
+        </p>
+      </a>
+    </div>
+  </section>
+</FlowLayout>
