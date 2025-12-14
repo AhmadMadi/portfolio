@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import { ClientRouter } from "astro:transitions";
 
 const { title, step, total, backHref, nextHref } = Astro.props;
 
@@ -32,7 +31,6 @@ const navLinkAttrs = (href) => (path === href ? { "aria-current": "page" } : {})
     data-next={nextHref ?? ""}
   >
     <!-- App-like transitions -->
-    <ClientRouter />
 
     <!-- Top mini-nav (centered like the content) -->
 <header class="fixed left-0 right-0 top-0 z-50">
