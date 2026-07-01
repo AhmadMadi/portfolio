@@ -7,7 +7,8 @@
 --------------------------------------------------------------------------- */
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Warm near-black ink, paper-white foreground */
   --color-ink-950: #0a0a0b;
@@ -77,9 +78,10 @@
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--color-paper-500);
   }
