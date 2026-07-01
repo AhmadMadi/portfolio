@@ -9,47 +9,93 @@ import FlowLayout from "../layouts/FlowLayout.astro";
   backHref="/about"
   nextHref="/skills"
 >
-  <section class="space-y-6">
-    <header class="space-y-2">
-      <h1 class="text-3xl font-semibold tracking-tight">Selected work</h1>
-      <p class="text-neutral-300">
-        A couple of projects I’m proud of — one from my role at Washmen, and one product I built.
+  <section class="space-y-8">
+    <header class="space-y-4">
+      <p class="eyebrow">02 — Work</p>
+      <h1
+        class="font-display text-4xl font-medium tracking-tight text-paper-100"
+      >
+        Selected work
+      </h1>
+      <p class="max-w-2xl leading-relaxed text-paper-400">
+        A couple of projects I'm proud of — one from my role at Washmen, and one
+        product I built end to end.
       </p>
     </header>
 
-    <div class="grid gap-4 sm:grid-cols-2">
-      <!-- Washmen project -->
-      <article class="rounded-xl border border-neutral-800 p-4">
-        <div class="text-xs text-neutral-500">Washmen</div>
-        <h2 class="mt-1 text-lg font-medium">Ops Dashboard</h2>
-        <p class="mt-1 text-sm text-neutral-300">
-          Modernized operational tooling into a scalable, API-driven system, improving maintainability
-          and day-to-day usability while keeping production stable during migration.
-        </p>
-        <p class="mt-2 text-xs text-neutral-400">
-          React · TypeScript · Backend APIs · AWS
-        </p>
+    <div class="divide-y divide-ink-800 border-y border-ink-800">
+      <!-- Washmen -->
+      <article class="group grid gap-4 py-6 sm:grid-cols-[8rem_1fr]">
+        <div class="space-y-1">
+          <div class="text-sm font-medium text-paper-200">Washmen</div>
+          <div class="text-xs text-paper-600">Internal platform</div>
+        </div>
+        <div class="space-y-3">
+          <h2 class="font-display text-xl font-medium text-paper-100">
+            Ops Dashboard
+          </h2>
+          <p class="max-w-xl text-sm leading-relaxed text-paper-400">
+            Modernized operational tooling into a scalable, API-driven system —
+            improving maintainability and day-to-day usability while keeping
+            production stable throughout the migration.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            {
+              ["React", "TypeScript", "Backend APIs", "AWS"].map((t) => (
+                <span class="rounded-full border border-ink-800 px-2.5 py-0.5 text-xs text-paper-500">
+                  {t}
+                </span>
+              ))
+            }
+          </div>
+        </div>
       </article>
 
-      <!-- MenuDash project (external link + orange hover) -->
+      <!-- MenuDash -->
       <a
         href="https://menudash.io"
         target="_blank"
         rel="noreferrer"
-        class="group block rounded-xl border border-neutral-800 p-4 transition
-               hover:border-orange-500/50 hover:bg-orange-500/10"
+        class="group grid gap-4 py-6 transition-colors duration-300 sm:grid-cols-[8rem_1fr]"
       >
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-medium">MenuDash</h2>
-          <span class="text-xs text-neutral-500 group-hover:text-orange-300">Open ↗</span>
+        <div class="space-y-1">
+          <div class="text-sm font-medium text-paper-200">MenuDash</div>
+          <div class="text-xs text-paper-600">Independent · SaaS</div>
         </div>
-        <p class="mt-1 text-sm text-neutral-300 group-hover:text-neutral-200">
-          A streamlined digital menu management platform that helps businesses create, edit,
-          and present menus online with a clean dashboard experience.
-        </p>
-        <p class="mt-2 text-xs text-neutral-400 group-hover:text-orange-200/80">
-          SaaS · Dashboard UI · Menu items · Images · Pricing
-        </p>
+        <div class="space-y-3">
+          <h2
+            class="flex items-center gap-2 font-display text-xl font-medium text-paper-100 transition-colors duration-300 group-hover:text-accent-soft"
+          >
+            Digital menu platform
+            <svg
+              class="h-4 w-4 text-paper-500 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M5 11 11 5m0 0H6m5 0v5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </h2>
+          <p class="max-w-xl text-sm leading-relaxed text-paper-400">
+            A streamlined platform that helps businesses create, edit, and
+            present menus online — with a clean dashboard for items, images, and
+            pricing.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-1">
+            {
+              ["SaaS", "Dashboard UI", "Menu items", "Pricing"].map((t) => (
+                <span class="rounded-full border border-ink-800 px-2.5 py-0.5 text-xs text-paper-500 transition-colors duration-300 group-hover:border-accent/40 group-hover:text-accent-soft">
+                  {t}
+                </span>
+              ))
+            }
+          </div>
+        </div>
       </a>
     </div>
   </section>

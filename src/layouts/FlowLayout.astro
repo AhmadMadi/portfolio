@@ -6,17 +6,26 @@ const { title, step, total, backHref, nextHref } = Astro.props;
 
 const path = Astro.url.pathname;
 
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Work" },
+  { href: "/skills", label: "Skills" },
+  { href: "/contact", label: "Contact" },
+];
+
 const navLinkClass = (href) => {
   const active = path === href;
   return [
-    "hover:text-neutral-200",
-    active ? "text-neutral-100" : "text-neutral-400",
+    "link-underline transition-colors duration-300",
+    active ? "text-paper-100" : "text-paper-500 hover:text-paper-200",
   ].join(" ");
 };
 
 const navLinkAttrs = (href) => (path === href ? { "aria-current": "page" } : {});
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
+const pct = total ? Math.round((step / total) * 100) : 0;
 ---
 
 <!doctype html>
@@ -25,176 +34,192 @@ const baseUrl = import.meta.env.BASE_URL ?? "/";
     <meta charset="utf-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Ahmad Madi — Full Stack Software Engineer specializing in backend systems, cloud automation, and reliability."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
 
-<body
-  class="min-h-screen bg-neutral-950 text-neutral-100 overflow-y-auto md:overflow-hidden"
-  data-base={baseUrl}
-  data-back={backHref ?? ""}
-  data-next={nextHref ?? ""}
->
-
-    <!-- App-like transitions -->
+  <body
+    class="min-h-screen bg-ink-950 text-paper-100 antialiased overflow-y-auto md:overflow-hidden"
+    data-base={baseUrl}
+    data-back={backHref ?? ""}
+    data-next={nextHref ?? ""}
+  >
     <ClientRouter />
 
-    <!-- Top mini-nav (centered like the content) -->
-<header class="fixed left-0 right-0 top-0 z-50">
-  <div class="bg-neutral-950/60 backdrop-blur-md border-b border-neutral-800/60">
-    <div class="mx-auto w-full max-w-3xl px-4 py-3">
-<nav class="flex justify-center gap-6 text-sm">
-  <a data-nav class={navLinkClass("/")} href="/" {...navLinkAttrs("/")}>Home</a>
-  <a data-nav class={navLinkClass("/about")} href="/about" {...navLinkAttrs("/about")}>About</a>
-  <a data-nav class={navLinkClass("/work")} href="/work" {...navLinkAttrs("/work")}>Work</a>
-  <a data-nav class={navLinkClass("/skills")} href="/skills" {...navLinkAttrs("/skills")}>Skills</a>
-  <a data-nav class={navLinkClass("/contact")} href="/contact" {...navLinkAttrs("/contact")}>Contact</a>
-</nav>
-    </div>
-  </div>
-</header>
-
+    <!-- Header -->
+    <header class="fixed inset-x-0 top-0 z-50">
+      <div class="border-b border-ink-800/70 bg-ink-950/70 backdrop-blur-xl">
+        <div
+          class="mx-auto flex w-full max-w-3xl items-center justify-between px-5 py-4"
+        >
+          <a
+            href="/"
+            class="font-display text-base font-semibold tracking-tight text-paper-100"
+            aria-label="Ahmad Madi — home"
+          >
+            AM<span class="text-accent">.</span>
+          </a>
+          <nav class="flex gap-5 text-[0.82rem] sm:gap-7 sm:text-sm">
+            {
+              links.map((l) => (
+                <a
+                  data-nav
+                  class={navLinkClass(l.href)}
+                  href={l.href}
+                  {...navLinkAttrs(l.href)}
+                >
+                  {l.label}
+                </a>
+              ))
+            }
+          </nav>
+        </div>
+      </div>
+    </header>
 
     <!-- Main content -->
-    <main class="flex min-h-screen items-center justify-center px-4 pt-24">
-      <div class="w-full max-w-3xl pb-24">
+    <main class="flex min-h-screen items-center justify-center px-5 pt-28 pb-28">
+      <div class="w-full max-w-3xl">
         <slot />
       </div>
     </main>
 
-    <!-- Footer nav (centered like the content) -->
-<footer class="fixed bottom-0 left-0 right-0 z-50">
-  <div class="bg-neutral-950/60 backdrop-blur-md border-t border-neutral-800/60">
-<div class="mx-auto w-full max-w-3xl px-4 py-3 text-sm text-neutral-400">
-  <!-- Mobile: single-row 3-column layout -->
-  <!-- Desktop: classic left/right layout -->
-  <div class="grid grid-cols-3 items-center md:flex md:justify-between">
-    
-    <!-- Left: Back -->
-    <div class="justify-self-start md:hidden">
-      {backHref && (
-        <a
-          href={backHref}
-          class="rounded-md border border-neutral-700 px-3 py-1 text-sm hover:bg-neutral-800"
+    <!-- Footer -->
+    <footer class="fixed inset-x-0 bottom-0 z-50">
+      <!-- Progress rail -->
+      <div class="h-px w-full bg-ink-800">
+        <div
+          class="h-px bg-accent transition-[width] duration-500 ease-out"
+          style={`width:${pct}%`}
         >
-          ← Back
-        </a>
-      )}
-    </div>
-
-    <!-- Center: Counter -->
-    <div class="justify-self-center tabular-nums md:hidden">
-      {step}/{total}
-    </div>
-
-    <!-- Right: Next -->
-    <div class="justify-self-end md:hidden">
-      {nextHref && (
-        <a
-          href={nextHref}
-          class="rounded-md bg-neutral-100 px-3 py-1 text-sm text-neutral-900 hover:bg-neutral-200"
-        >
-          Next →
-        </a>
-      )}
-    </div>
-
-    <!-- Desktop (md+): keep original behavior -->
-    <div class="hidden md:flex md:w-full md:items-center md:justify-between">
-      <div class="tabular-nums">{step}/{total}</div>
-
-      <div class="flex gap-3">
-        {backHref && (
-          <a
-            href={backHref}
-            class="rounded-md border border-neutral-700 px-3 py-1 text-sm hover:bg-neutral-800"
-          >
-            ← Back
-          </a>
-        )}
-
-        {nextHref && (
-          <a
-            href={nextHref}
-            class="rounded-md bg-neutral-100 px-3 py-1 text-sm text-neutral-900 hover:bg-neutral-200"
-          >
-            Next →
-          </a>
-        )}
+        </div>
       </div>
-    </div>
 
-  </div>
-</div>
+      <div class="border-t border-ink-800/70 bg-ink-950/70 backdrop-blur-xl">
+        <div
+          class="mx-auto flex w-full max-w-3xl items-center justify-between px-5 py-3.5 text-sm"
+        >
+          <div class="flex items-baseline gap-2 tabular-nums text-paper-500">
+            <span class="font-display text-paper-200">{step}</span>
+            <span class="text-xs">/ {total}</span>
+            <span class="ml-3 hidden text-xs text-paper-600 sm:inline">
+              Use ← → to navigate
+            </span>
+          </div>
 
-
-  </div>
-</footer>
-
-
+          <div class="flex items-center gap-2.5">
+            {
+              backHref && (
+                <a
+                  href={backHref}
+                  class="group inline-flex items-center gap-1.5 rounded-full border border-ink-700 px-3.5 py-1.5 text-sm text-paper-200 transition-colors duration-300 hover:border-ink-700 hover:bg-ink-850"
+                >
+                  <svg
+                    class="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-x-0.5"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 3.5 5.5 8 10 12.5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  Back
+                </a>
+              )
+            }
+            {
+              nextHref && (
+                <a
+                  href={nextHref}
+                  class="group inline-flex items-center gap-1.5 rounded-full bg-paper-100 px-3.5 py-1.5 text-sm font-medium text-ink-950 transition-colors duration-300 hover:bg-white"
+                >
+                  Next
+                  <svg
+                    class="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M6 3.5 10.5 8 6 12.5"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </footer>
 
     <!-- Keyboard navigation: ← back, → next -->
-<script is:inline>
-  document.addEventListener("keydown", (e) => {
-    const back = document.body.dataset.back;
-    const next = document.body.dataset.next;
+    <script is:inline>
+      document.addEventListener("keydown", (e) => {
+        const back = document.body.dataset.back;
+        const next = document.body.dataset.next;
 
-    const t = e.target;
-    const isTyping =
-      t &&
-      (t.tagName === "INPUT" ||
-        t.tagName === "TEXTAREA" ||
-        t.isContentEditable);
+        const t = e.target;
+        const isTyping =
+          t &&
+          (t.tagName === "INPUT" ||
+            t.tagName === "TEXTAREA" ||
+            t.isContentEditable);
 
-    if (isTyping) return;
+        if (isTyping) return;
 
-    if (e.key === "ArrowLeft" && back) {
-      window.location.href = back;
-    }
+        if (e.key === "ArrowLeft" && back) window.location.href = back;
+        if (e.key === "ArrowRight" && next) window.location.href = next;
+      });
+    </script>
 
-    if (e.key === "ArrowRight" && next) {
-      window.location.href = next;
-    }
-  });
-</script>
+    <script is:inline>
+      function normalize(p) {
+        p = (p || "").split("?")[0].split("#")[0];
+        if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
+        return p || "/";
+      }
 
-<script is:inline>
-  function normalize(p) {
-    p = (p || "").split("?")[0].split("#")[0];
-    if (p.length > 1 && p.endsWith("/")) p = p.slice(0, -1);
-    return p || "/";
-  }
+      function getCurrentPath() {
+        const base = normalize(document.body.dataset.base || "/");
+        let current = normalize(window.location.pathname);
+        if (base !== "/" && current.startsWith(base)) {
+          current = normalize(current.slice(base.length));
+        }
+        return current;
+      }
 
-  function getCurrentPath() {
-    const base = normalize(document.body.dataset.base || "/");
-    let current = normalize(window.location.pathname);
+      function updateActiveNav() {
+        const current = getCurrentPath();
+        document.querySelectorAll("a[data-nav]").forEach((a) => {
+          const href = normalize(a.getAttribute("href") || "/");
+          const active = current === href;
+          a.classList.toggle("text-paper-100", active);
+          a.classList.toggle("text-paper-500", !active);
+          if (active) a.setAttribute("aria-current", "page");
+          else a.removeAttribute("aria-current");
+        });
+      }
 
-    // If deployed under a subpath (e.g., GitHub Pages /repo), strip it.
-    if (base !== "/" && current.startsWith(base)) {
-      current = normalize(current.slice(base.length));
-    }
-
-    return current;
-  }
-
-  function updateActiveNav() {
-    const current = getCurrentPath();
-    const links = document.querySelectorAll("a[data-nav]");
-
-    links.forEach((a) => {
-      const href = normalize(a.getAttribute("href") || "/");
-      const active = current === href;
-
-      a.classList.toggle("text-neutral-100", active);
-      a.classList.toggle("text-neutral-400", !active);
-
-      if (active) a.setAttribute("aria-current", "page");
-      else a.removeAttribute("aria-current");
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", updateActiveNav);
-  document.addEventListener("astro:after-swap", updateActiveNav);
-</script>
-
-
+      document.addEventListener("DOMContentLoaded", updateActiveNav);
+      document.addEventListener("astro:after-swap", updateActiveNav);
+    </script>
   </body>
 </html>

@@ -1,1 +1,133 @@
 @import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   A restrained, editorial dark theme. One serif display face, one grotesque
+   for text, and a single disciplined accent. No gradients, no glow.
+--------------------------------------------------------------------------- */
+@theme {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+
+  /* Warm near-black ink, paper-white foreground */
+  --color-ink-950: #0a0a0b;
+  --color-ink-900: #101012;
+  --color-ink-850: #17171a;
+  --color-ink-800: #1e1e22;
+  --color-ink-700: #2a2a30;
+  --color-paper-100: #f4f3f1;
+  --color-paper-200: #e7e6e2;
+  --color-paper-400: #a9a8a3;
+  --color-paper-500: #86857f;
+  --color-paper-600: #63625d;
+
+  /* Single accent — a muted amber, used sparingly */
+  --color-accent: #e0a34a;
+  --color-accent-soft: #f0c98a;
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ink-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Quiet, thin scrollbar so the dark canvas stays clean */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ink-700) transparent;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Small, reusable primitives (kept minimal on purpose)
+--------------------------------------------------------------------------- */
+@layer components {
+  /* Editorial section eyebrow: monospaced-feeling index + label */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-paper-500);
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: var(--color-ink-700);
+  }
+
+  /* Animated underline for nav + inline links */
+  .link-underline {
+    position: relative;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease-out-quint);
+  }
+
+  .link-underline:hover::after,
+  .link-underline[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* Rule-lined surface: a single hairline instead of a heavy boxed card */
+  .rule-top {
+    border-top: 1px solid var(--color-ink-800);
+  }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

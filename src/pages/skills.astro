@@ -1,5 +1,24 @@
 ---
 import FlowLayout from "../layouts/FlowLayout.astro";
+
+const groups = [
+  {
+    label: "Backend",
+    items: ["Node.js", "TypeScript", "Python", "REST APIs", "Microservices", "SQL / NoSQL"],
+  },
+  {
+    label: "Cloud & Reliability",
+    items: ["AWS Lambda", "ECS", "S3", "Redshift", "SQS / SNS", "Observability"],
+  },
+  {
+    label: "Frontend",
+    items: ["React", "TypeScript", "UI migrations", "Performance"],
+  },
+  {
+    label: "Quality & Delivery",
+    items: ["CI/CD", "Testing", "Code review", "Docs", "Agile"],
+  },
+];
 ---
 
 <FlowLayout
@@ -9,55 +28,41 @@ import FlowLayout from "../layouts/FlowLayout.astro";
   backHref="/work"
   nextHref="/contact"
 >
-  <section class="space-y-6">
-    <header class="space-y-2">
-      <h1 class="text-3xl font-semibold tracking-tight">Skills</h1>
-      <p class="text-neutral-300">
+  <section class="space-y-8">
+    <header class="space-y-4">
+      <p class="eyebrow">03 — Skills</p>
+      <h1
+        class="font-display text-4xl font-medium tracking-tight text-paper-100"
+      >
+        The toolkit
+      </h1>
+      <p class="max-w-2xl leading-relaxed text-paper-400">
         Tools and technologies I use to build and operate production systems.
       </p>
     </header>
 
-    <div class="grid gap-4 md:grid-cols-2">
-      <div class="rounded-xl border border-neutral-800 p-4">
-        <h2 class="mb-3 text-sm font-semibold text-neutral-200">Backend</h2>
-        <p class="text-sm text-neutral-300">
-          Node.js, TypeScript, Python, REST APIs, microservices, SQL and NoSQL
-          databases.
-        </p>
-      </div>
-
-      <div class="rounded-xl border border-neutral-800 p-4">
-        <h2 class="mb-3 text-sm font-semibold text-neutral-200">
-          Cloud & Reliability
-        </h2>
-        <p class="text-sm text-neutral-300">
-          AWS (Lambda, ECS, S3, Redshift, SQS, SNS), cloud automation, observability,
-          and operational safety.
-        </p>
-      </div>
-
-      <div class="rounded-xl border border-neutral-800 p-4">
-        <h2 class="mb-3 text-sm font-semibold text-neutral-200">Frontend</h2>
-        <p class="text-sm text-neutral-300">
-          React, TypeScript, modern UI migrations, performance optimization.
-        </p>
-      </div>
-
-      <div class="rounded-xl border border-neutral-800 p-4">
-        <h2 class="mb-3 text-sm font-semibold text-neutral-200">
-          Quality & Delivery
-        </h2>
-        <p class="text-sm text-neutral-300">
-          CI/CD, testing, code reviews, documentation, agile collaboration.
-        </p>
-      </div>
+    <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+      {
+        groups.map((g) => (
+          <div class="rule-top pt-5">
+            <h2 class="text-sm font-semibold text-paper-200">{g.label}</h2>
+            <ul class="mt-3 flex flex-wrap gap-2">
+              {g.items.map((item) => (
+                <li class="rounded-full border border-ink-800 bg-ink-900 px-3 py-1 text-xs text-paper-300">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
     </div>
 
-    <div class="rounded-xl border border-neutral-800 p-4">
-      <h2 class="mb-2 text-sm font-semibold text-neutral-200">Principles</h2>
-      <p class="text-sm text-neutral-300">
-        I optimize for reliability, clarity, and performance — shipping pragmatic
-        solutions first, then improving iteratively.
+    <div class="rule-top pt-6">
+      <h2 class="text-xs uppercase tracking-wider text-paper-600">Principles</h2>
+      <p class="mt-2 max-w-2xl text-sm leading-relaxed text-paper-300">
+        I optimize for reliability, clarity, and performance — shipping
+        pragmatic solutions first, then improving iteratively.
       </p>
     </div>
   </section>

@@ -8,64 +8,94 @@ import FlowLayout from "../layouts/FlowLayout.astro";
   total={5}
   nextHref="/about"
 >
-  <section class="space-y-8">
-    <header class="space-y-3">
-      <p class="text-sm text-neutral-400">Ahmad Madi</p>
+  <section class="space-y-10">
+    <div class="space-y-6">
+      <p class="eyebrow">Ahmad Madi</p>
 
-      <h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
-        Full Stack Software Engineer
+      <h1
+        class="font-display text-[2.6rem] font-medium leading-[1.05] tracking-tight text-paper-100 sm:text-6xl"
+      >
+        Full Stack<br />
+        <span class="text-paper-400">Software Engineer</span>
       </h1>
 
-      <p class="max-w-2xl text-neutral-300">
+      <p class="max-w-xl text-[1.05rem] leading-relaxed text-paper-200">
         I design, build, and operate reliable backend systems, cloud automation,
         and internal platforms used in production every day.
       </p>
 
-      <p class="max-w-2xl text-neutral-400">
+      <p class="max-w-xl leading-relaxed text-paper-500">
         Specialized in AWS-based systems, real-time analytics, and modernizing
-        legacy platforms with a strong focus on performance and reliability.
+        legacy platforms — with a bias toward performance and reliability.
       </p>
-    </header>
+    </div>
 
     <div class="flex flex-col gap-3 sm:flex-row">
       <a
         href="/Ahmad Madi - Resume.pdf"
-        class="inline-flex items-center justify-center rounded-md bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-900 hover:bg-neutral-200"
+        class="group inline-flex items-center justify-center gap-2 rounded-full bg-paper-100 px-5 py-2.5 text-sm font-medium text-ink-950 transition-colors duration-300 hover:bg-white"
       >
-        Download Resume
+        <svg
+          class="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M8 2.5v8m0 0L4.5 7M8 10.5 11.5 7M2.5 13.5h11"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+        Download résumé
       </a>
 
       <a
         href="/about"
-        class="inline-flex items-center justify-center rounded-md border border-neutral-700 px-4 py-2 text-sm text-neutral-100 hover:bg-neutral-900"
+        class="group inline-flex items-center justify-center gap-2 rounded-full border border-ink-700 px-5 py-2.5 text-sm text-paper-100 transition-colors duration-300 hover:bg-ink-850"
       >
-        Get to know me →
+        Get to know me
+        <svg
+          class="h-4 w-4 text-paper-400 transition-transform duration-300 group-hover:translate-x-0.5"
+          viewBox="0 0 16 16"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M3.5 8h9m0 0L9 4.5M12.5 8 9 11.5"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
       </a>
     </div>
 
-    <div class="rounded-xl border border-neutral-800 p-4">
-      <div class="grid gap-3 md:grid-cols-3">
-        <div>
-          <div class="text-xs text-neutral-500">Focus</div>
-          <div class="text-sm text-neutral-200">
-            Backend · Cloud Automation · Reliability
-          </div>
-        </div>
-
-        <div>
-          <div class="text-xs text-neutral-500">Core Stack</div>
-          <div class="text-sm text-neutral-200">
-            AWS · Node.js · TypeScript · Python
-          </div>
-        </div>
-
-        <div>
-          <div class="text-xs text-neutral-500">Currently</div>
-          <div class="text-sm text-neutral-200">
-            Software Engineer III @ Washmen (Remote)
-          </div>
-        </div>
+    <!-- Facts as an editorial ruled list, not three matching cards -->
+    <dl class="grid gap-px overflow-hidden rounded-2xl border border-ink-800 bg-ink-800 sm:grid-cols-3">
+      <div class="bg-ink-950 p-5">
+        <dt class="text-xs uppercase tracking-wider text-paper-600">Focus</dt>
+        <dd class="mt-2 text-sm text-paper-200">
+          Backend · Cloud Automation · Reliability
+        </dd>
       </div>
-    </div>
+      <div class="bg-ink-950 p-5">
+        <dt class="text-xs uppercase tracking-wider text-paper-600">
+          Core stack
+        </dt>
+        <dd class="mt-2 text-sm text-paper-200">
+          AWS · Node.js · TypeScript · Python
+        </dd>
+      </div>
+      <div class="bg-ink-950 p-5">
+        <dt class="text-xs uppercase tracking-wider text-paper-600">
+          Currently
+        </dt>
+        <dd class="mt-2 text-sm text-paper-200">
+          Software Engineer III · Washmen (Remote)
+        </dd>
+      </div>
+    </dl>
   </section>
 </FlowLayout>

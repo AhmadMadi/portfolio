@@ -9,63 +9,78 @@ import FlowLayout from "../layouts/FlowLayout.astro";
   backHref="/"
   nextHref="/work"
 >
-  <section class="space-y-6">
-    <header class="space-y-2">
-      <h1 class="text-3xl font-semibold tracking-tight">About me</h1>
-      <p class="text-neutral-300">
-        Senior Software Engineer with strong experience building and operating
-        cloud-based systems in production environments.
+  <section class="space-y-8">
+    <header class="space-y-4">
+      <p class="eyebrow">01 — About</p>
+      <h1
+        class="font-display text-4xl font-medium tracking-tight text-paper-100"
+      >
+        Building systems that stay up.
+      </h1>
+      <p class="max-w-2xl text-[1.05rem] leading-relaxed text-paper-300">
+        Senior software engineer with over five years building and operating
+        cloud-based systems in production — internal platforms, backend
+        services, and the operational tooling teams rely on daily.
+      </p>
+      <p class="max-w-2xl leading-relaxed text-paper-500">
+        My work focuses on designing scalable backend systems, automating
+        workflows with cloud-native architectures, and modernizing legacy
+        systems without disrupting production.
       </p>
     </header>
 
-    <div class="rounded-xl border border-neutral-800 p-4 space-y-3">
-      <p class="text-sm text-neutral-300">
-        I have over five years of experience working on internal platforms,
-        backend services, and operational tooling where reliability and
-        performance are critical.
-      </p>
-
-      <p class="text-sm text-neutral-300">
-        My work focuses on designing scalable backend systems, automating
-        workflows using cloud-native architectures, and modernizing legacy
-        systems without disrupting production.
-      </p>
-    </div>
-
-    <div class="grid gap-4 md:grid-cols-2">
-      <div class="rounded-xl border border-neutral-800 p-4">
-        <h2 class="mb-2 text-sm font-semibold text-neutral-200">
-          What I do best
-        </h2>
-        <ul class="space-y-1 text-sm text-neutral-300">
-          <li>• Designing scalable backend APIs and services</li>
-          <li>• Cloud automation using AWS and event-driven systems</li>
-          <li>• Improving production performance and stability</li>
-          <li>• Migrating legacy systems to modern stacks</li>
+    <div class="grid gap-8 sm:grid-cols-2">
+      <div class="space-y-3">
+        <h2 class="text-sm font-semibold text-paper-200">What I do best</h2>
+        <ul class="space-y-2.5 text-sm text-paper-400">
+          <li class="flex gap-3">
+            <span class="mt-2 h-px w-3 shrink-0 bg-accent"></span>
+            Designing scalable backend APIs and services
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-px w-3 shrink-0 bg-accent"></span>
+            Cloud automation with AWS and event-driven systems
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-px w-3 shrink-0 bg-accent"></span>
+            Improving production performance and stability
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-px w-3 shrink-0 bg-accent"></span>
+            Migrating legacy systems to modern stacks
+          </li>
         </ul>
       </div>
 
-      <div class="rounded-xl border border-neutral-800 p-4">
-        <h2 class="mb-2 text-sm font-semibold text-neutral-200">
-          How I work
-        </h2>
-        <ul class="space-y-1 text-sm text-neutral-300">
-          <li>• Pragmatic and impact-driven</li>
-          <li>• Strong ownership from design to rollout</li>
-          <li>• Clear communication of tradeoffs</li>
-          <li>• Focused on shipping and iterating safely</li>
+      <div class="space-y-3">
+        <h2 class="text-sm font-semibold text-paper-200">How I work</h2>
+        <ul class="space-y-2.5 text-sm text-paper-400">
+          <li class="flex gap-3">
+            <span class="mt-2 h-px w-3 shrink-0 bg-ink-700"></span>
+            Pragmatic and impact-driven
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-px w-3 shrink-0 bg-ink-700"></span>
+            Strong ownership from design to rollout
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-px w-3 shrink-0 bg-ink-700"></span>
+            Clear communication of tradeoffs
+          </li>
+          <li class="flex gap-3">
+            <span class="mt-2 h-px w-3 shrink-0 bg-ink-700"></span>
+            Focused on shipping and iterating safely
+          </li>
         </ul>
       </div>
     </div>
 
-    <div class="rounded-xl border border-neutral-800 p-4">
-      <h2 class="mb-2 text-sm font-semibold text-neutral-200">
-        Currently
-      </h2>
-      <p class="text-sm text-neutral-300">
-        Working remotely at Washmen on internal platforms, operational analytics,
-        and cloud automation systems. Also building independent projects such as
-        MenuCraft.
+    <div class="rule-top pt-6">
+      <h2 class="text-xs uppercase tracking-wider text-paper-600">Currently</h2>
+      <p class="mt-2 max-w-2xl text-sm leading-relaxed text-paper-300">
+        Working remotely at Washmen on internal platforms, operational
+        analytics, and cloud automation. Also building independent products,
+        including MenuDash.
       </p>
     </div>
   </section>
